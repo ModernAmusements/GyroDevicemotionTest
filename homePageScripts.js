@@ -1,7 +1,45 @@
 // Preloader
 $(function() {
     $("#preload-homepage").click(function() {
-        $(this).fadeOut("300").remove();
+		$(this).fadeOut("300").remove();
+		if (
+			DeviceMotionEvent &&
+			typeof DeviceMotionEvent.requestPermission === "function"
+		) {
+			DeviceMotionEvent.requestPermission();
+		}
+
+		if (is_running) {
+			var x = e.clientX - $(this).offset().left + $(window).scrollLeft();
+			var y = e.clientY - $(this).offset().top + $(window).scrollTop();
+			var rY = map(x, 0, $(this).width(), -17, 17);
+			var rX = map(y, 0, $(this).height(), -17, 17);
+
+			$(this)
+				.children(".image")
+				.css(
+					"transform",
+					"rotateY(" + rY + "deg)" + " " + "rotateX(" + -rX + "deg)"
+				);
+			is_running = false;
+		} else {
+			var x = e.clientX - $(this).offset().left + $(window).scrollLeft();
+			var y = e.clientY - $(this).offset().top + $(window).scrollTop();
+			var rY = map(x, 0, $(this).width(), -17, 17);
+			var rX = map(y, 0, $(this).height(), -17, 17);
+
+			$(this)
+				.children(".image")
+				.css(
+					"transform",
+					"rotateY(" + rY + "deg)" + " " + "rotateX(" + -rX + "deg)"
+				);
+			is_running = true;
+		}
+		
+		function map(x, in_min, in_max, out_min, out_max) {
+			return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+		}
     });
     if (!sessionStorage.getItem("homePagePreloader")) {
         sessionStorage.setItem("homePagePreloader", true);
@@ -86,47 +124,3 @@ card.on("mousemove", function(e) {
 			}
 		});
 		
-		document.onload = function(e) {
-            e.preventDefault();
-
-            // Request permission for iOS 13+ devices
-            if (
-                DeviceMotionEvent &&
-                typeof DeviceMotionEvent.requestPermission === "function"
-            ) {
-                DeviceMotionEvent.requestPermission();
-            }
-
-            if (is_running) {
-                var x = e.clientX - $(this).offset().left + $(window).scrollLeft();
-                var y = e.clientY - $(this).offset().top + $(window).scrollTop();
-                var rY = map(x, 0, $(this).width(), -17, 17);
-                var rX = map(y, 0, $(this).height(), -17, 17);
-
-                $(this)
-                    .children(".image")
-                    .css(
-                        "transform",
-                        "rotateY(" + rY + "deg)" + " " + "rotateX(" + -rX + "deg)"
-                    );
-                is_running = false;
-            } else {
-				var x = e.clientX - $(this).offset().left + $(window).scrollLeft();
-                var y = e.clientY - $(this).offset().top + $(window).scrollTop();
-                var rY = map(x, 0, $(this).width(), -17, 17);
-                var rX = map(y, 0, $(this).height(), -17, 17);
-
-                $(this)
-                    .children(".image")
-                    .css(
-                        "transform",
-                        "rotateY(" + rY + "deg)" + " " + "rotateX(" + -rX + "deg)"
-                    );
-                is_running = true;
-			}
-			
-
-			function map(x, in_min, in_max, out_min, out_max) {
-				return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
-			}
-        };
