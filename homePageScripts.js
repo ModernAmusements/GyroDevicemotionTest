@@ -10996,43 +10996,54 @@ $(function () {
     $('#preload-homepage').css('display', 'none');
   }
 });
+
+
+
+
+
+
+
+
+
+
 $(function () {
-  var gyro = false;
-
-  if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function") {
-    DeviceMotionEvent.requestPermission().then(function (response) {
-      if (response == 'granted') {
-        window.addEventListener('devicemotion', function (event) {
-          if (event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma) gyro = true;
-        });
-      }
-    })["catch"](console.error);
-  }
-
   var card = $(".card");
+  let is_running = false;
 
-  if (gyro) {
-    if (accx != undefined) {
-      globalX = globalX + accx * 2;
-    }
+	  if (
+		  DeviceMotionEvent &&
+		  typeof DeviceMotionEvent.requestPermission === "function"
+	  ) {
+		  DeviceMotionEvent.requestPermission();
+	  }
 
-    if (accy != undefined) {
-      globalY = globalY - accy * 2;
-    }
-  } else {
-    card.on("mousemove", function (e) {
-      var x = e.clientX - $(this).offset().left + $(window).scrollLeft();
-      var y = e.clientY - $(this).offset().top + $(window).scrollTop();
-      var rY = map(x, 0, $(this).width(), -17, 17);
-      var rX = map(y, 0, $(this).height(), -17, 17);
-      $(this).children(".image").css("transform", "rotateY(" + rY + "deg)" + " " + "rotateX(" + -rX + "deg)");
-    });
-  }
+	  if (is_running) {
+		card.on("mousemove", function (e) {
+			var x = e.clientX - $(this).offset().left + $(window).scrollLeft();
+			var y = e.clientY - $(this).offset().top + $(window).scrollTop();
+			var rY = map(x, 0, $(this).width(), -17, 17);
+			var rX = map(y, 0, $(this).height(), -17, 17);
+			$(this).children(".image").css("transform", "rotateY(" + rY + "deg)" + " " + "rotateX(" + -rX + "deg)");
+		  });
+		  is_running = false;
+	  } else {
+		window.addEventListener('devicemotion', function (event) {
+			if (event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma) gyro = true;
+		  });
+
+		is_running = true;
+		  
+	  }
 
   function map(x, in_min, in_max, out_min, out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
 });
+
+
+
+
+
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
