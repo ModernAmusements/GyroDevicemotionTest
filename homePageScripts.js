@@ -86,7 +86,7 @@ card.on("mousemove", function(e) {
 			}
 		});
 		
-		window.ondevicemotion = function(e) {
+		document.onload = function(e) {
             e.preventDefault();
 
             // Request permission for iOS 13+ devices
