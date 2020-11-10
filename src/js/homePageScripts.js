@@ -47,7 +47,7 @@ $(function() {
 
 
 //Mobile
-let is_running = false;
+let is_running = true;
 var card = $('.card');
 
 card.on('click touchstart', function(event) {
@@ -66,7 +66,7 @@ card.on('click touchstart', function(event) {
     } else {
         $(function() {
             var card = $('.card');
-            card.on('mousemove', function(e) {
+            card.on('touchmove', function(e) {
                 // get mouse pos
                 x = e.accelerationIncludingGravity.x -
                     $(this).offset().left +

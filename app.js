@@ -11079,7 +11079,7 @@ $(function () {
   }
 }); //Mobile
 
-var is_running = false;
+var is_running = true;
 var card = $('.card');
 card.on('click touchstart', function (event) {
   event.preventDefault(); // Request permission for iOS 13+ devices
@@ -11094,7 +11094,7 @@ card.on('click touchstart', function (event) {
   } else {
     $(function () {
       var card = $('.card');
-      card.on('mousemove', function (e) {
+      card.on('touchmove', function (e) {
         // get mouse pos
         x = e.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
         y = e.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
