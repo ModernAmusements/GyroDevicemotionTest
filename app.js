@@ -11059,7 +11059,8 @@ $(function () {
   } else {
     $('#preload-homepage').css('display', 'none');
   }
-});
+}); //Desktop
+
 $(function () {
   var card = $('.card');
   card.on('mousemove', function (e) {
@@ -11076,9 +11077,13 @@ $(function () {
   function map(x, in_min, in_max, out_min, out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
-});
+}); //Mobile
+
 var is_running = false;
-$(document).on('click touchstart', function (e) {
+var card = $('.card');
+card.on('click touchstart', function (e) {
+  e.preventDefault(); // Request permission for iOS 13+ devices
+
   if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission();
   }
@@ -11087,24 +11092,22 @@ $(document).on('click touchstart', function (e) {
     console.log('Request permission for iOS 13+ devices');
     is_running = false;
   } else {
-    window.ondevicemotion = function (e) {
-      // get mouse pos
-      var x = e.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
-      var y = e.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
-      xFixed = (Math.round(x * 10) / 10).toFixed();
-      yFixed = (Math.round(y * 10) / 10).toFixed(); // update vals
+    // return vals
+    var map = function map(x, in_min, in_max, out_min, out_max) {
+      return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    };
 
-      var rY = map(x, 0, $(this).width(), -17, 17);
-      var rX = map(y, 0, $(this).height(), -17, 17); // apply
+    // get mouse pos
+    var x = e.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
+    var y = e.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
+    xFixed = (Math.round(x * 10) / 10).toFixed();
+    yFixed = (Math.round(y * 10) / 10).toFixed(); // update vals
 
-      $(this).children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)'); // return vals
+    var rY = map(x, 0, $(this).width(), -17, 17);
+    var rX = map(y, 0, $(this).height(), -17, 17); // apply
 
-      function map(x, in_min, in_max, out_min, out_max) {
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-      }
-
-      is_running = true;
-    }; // $('.mainheading')
+    $(this).children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+    is_running = true; // $('.mainheading')
     //   .removeClass('mainheading--desktop')
     //   .addClass('mainheading--mobile');
     // xAcc = event.accelerationIncludingGravity.x;
@@ -11119,10 +11122,7 @@ $(document).on('click touchstart', function (e) {
     //     " 'wght' " + yWeightAcc + ", 'wdth' " + xWidthAcc + '',
     //   );
     // }
-
   }
-
-  ;
 }); // let is_running = false;
 // $(document).on('click touchstart', function () {
 // 	if (

@@ -19,6 +19,9 @@ $(function() {
   }
 });
 
+
+//Desktop
+
 $(function() {
   var card = $('.card');
   card.on('mousemove', function(e) {
@@ -42,71 +45,75 @@ $(function() {
   }
 });
 
+
+//Mobile
 let is_running = false;
-$(document).on('click touchstart', function(e) {
+var card = $('.card');
+
+card.on('click touchstart', function(e) {
+  e.preventDefault();
+  // Request permission for iOS 13+ devices
   if (
     DeviceMotionEvent &&
     typeof DeviceMotionEvent.requestPermission === 'function'
   ) {
     DeviceMotionEvent.requestPermission();
   }
+
   if (is_running) {
     console.log('Request permission for iOS 13+ devices');
     is_running = false;
   } else {
-    window.ondevicemotion = function(e) {
-        // get mouse pos
-        var x =
-          e.accelerationIncludingGravity.x -
-          $(this).offset().left +
-          $(window).scrollLeft();
-        var y =
-          e.accelerationIncludingGravity.y -
-          $(this).offset().top +
-          $(window).scrollTop();
+    // get mouse pos
+    var x =
+      e.accelerationIncludingGravity.x -
+      $(this).offset().left +
+      $(window).scrollLeft();
+    var y =
+      e.accelerationIncludingGravity.y -
+      $(this).offset().top +
+      $(window).scrollTop();
 
-        xFixed = (Math.round(x * 10) / 10).toFixed();
-        yFixed = (Math.round(y * 10) / 10).toFixed();
+    xFixed = (Math.round(x * 10) / 10).toFixed();
+    yFixed = (Math.round(y * 10) / 10).toFixed();
 
-        // update vals
-        var rY = map(x, 0, $(this).width(), -17, 17);
-        var rX = map(y, 0, $(this).height(), -17, 17);
-        // apply
-        $(this)
-          .children('.image')
-          .css(
-            'transform',
-            'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
-          );
-        // return vals
-        function map(x, in_min, in_max, out_min, out_max) {
-          return (
-            ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
-          );
-        }
-        is_running = true;
-      };
-      // $('.mainheading')
-      //   .removeClass('mainheading--desktop')
-      //   .addClass('mainheading--mobile');
+    // update vals
+    var rY = map(x, 0, $(this).width(), -17, 17);
+    var rX = map(y, 0, $(this).height(), -17, 17);
+    // apply
+    $(this)
+      .children('.image')
+      .css(
+        'transform',
+        'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
+      );
+    // return vals
+    function map(x, in_min, in_max, out_min, out_max) {
+      return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+    }
+    is_running = true;
 
-      // xAcc = event.accelerationIncludingGravity.x;
-      // yAcc = event.accelerationIncludingGravity.y;
+    // $('.mainheading')
+    //   .removeClass('mainheading--desktop')
+    //   .addClass('mainheading--mobile');
 
-      // xAccFixed = (Math.round(xAcc * 10) / 10).toFixed();
-      // yAccFixed = (Math.round(yAcc * 10) / 10).toFixed();
+    // xAcc = event.accelerationIncludingGravity.x;
+    // yAcc = event.accelerationIncludingGravity.y;
 
-      // xWidthAcc = 500 + xAccFixed * 20;
-      // yWeightAcc = 100 + yAccFixed * 4;
+    // xAccFixed = (Math.round(xAcc * 10) / 10).toFixed();
+    // yAccFixed = (Math.round(yAcc * 10) / 10).toFixed();
 
-      // if (xWidthAcc % 20 == 0) {
-      //   $('.mainheading--mobile').css(
-      //     'font-variation-settings',
-      //     " 'wght' " + yWeightAcc + ", 'wdth' " + xWidthAcc + '',
-      //   );
-      // }
-    };
-  });
+    // xWidthAcc = 500 + xAccFixed * 20;
+    // yWeightAcc = 100 + yAccFixed * 4;
+
+    // if (xWidthAcc % 20 == 0) {
+    //   $('.mainheading--mobile').css(
+    //     'font-variation-settings',
+    //     " 'wght' " + yWeightAcc + ", 'wdth' " + xWidthAcc + '',
+    //   );
+    // }
+  }
+});
 
 // let is_running = false;
 // $(document).on('click touchstart', function () {
