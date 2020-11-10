@@ -68,15 +68,11 @@ card.on('click touchstart', function(event) {
             var card = $('.card');
             card.on('touchmove', function(e) {
                 // get mouse pos
-                x = e.accelerationIncludingGravity.x -
-                    $(this).offset().left +
-                    $(window).scrollLeft();
-                y = e.accelerationIncludingGravity.y -
-                    $(this).offset().top +
-                    $(window).scrollTop();
+                x = e.accelerationIncludingGravity.x;
+                y = e.accelerationIncludingGravity.y;
 
-                xFixed = (Math.round(x * 10) / 10).toFixed();
-                yFixed = (Math.round(y * 10) / 10).toFixed();
+                // xFixed = (Math.round(x * 10) / 10).toFixed();
+                // yFixed = (Math.round(y * 10) / 10).toFixed();
 
                 // update vals
                 var rY = map(x, 0, $(this).width(), -17, 17);
