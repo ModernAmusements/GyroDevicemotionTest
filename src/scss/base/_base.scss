@@ -203,8 +203,8 @@ html {
   color: var(--foreground-color);
   letter-spacing: -0.01em;
   -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+          text-size-adjust: 100%;
   font-variant-ligatures: contextual common-ligatures;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "cv10" 1;
 }
@@ -814,7 +814,7 @@ header:not(.post-header) {
   border-bottom: 1px solid var(--foreground-color);
   background-color: var(--background-color-alpha);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
+          backdrop-filter: saturate(180%) blur(20px);
 }
 
 header:not(.post-header) .home-logo {
@@ -1267,7 +1267,7 @@ footer p {
   transition: background var(--duration) ease;
   background-color: var(--background-color-alpha);
   -webkit-backdrop-filter: saturate(180%) blur(5px);
-  backdrop-filter: saturate(180%) blur(5px);
+          backdrop-filter: saturate(180%) blur(5px);
 }
 
 #preload-homepage .intro {
@@ -1293,7 +1293,7 @@ footer p {
   border-top: 1px solid var(--foreground-color);
   background-color: var(--background-color-alpha);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
+          backdrop-filter: saturate(180%) blur(20px);
   display: flex;
   justify-content: space-between;
 }
@@ -1871,9 +1871,9 @@ nav.categories-mobile {
   display: grid;
   box-sizing: border-box;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
 }
@@ -2597,12 +2597,12 @@ main.work-subpage .work-subpage-content .subpage-information .text-counter {
 
 .about-page .cover-animation .type-loop span.loop-right {
   -webkit-animation: typeloop-right infinite 20s linear;
-  animation: typeloop-right infinite 20s linear;
+          animation: typeloop-right infinite 20s linear;
 }
 
 .about-page .cover-animation .type-loop span.loop-left {
   -webkit-animation: typeloop-left infinite 20s linear;
-  animation: typeloop-left infinite 20s linear;
+          animation: typeloop-left infinite 20s linear;
 }
 
 .about-page .cover-animation span.cover-heading {
@@ -2839,12 +2839,12 @@ main.work-subpage .work-subpage-content .subpage-information .text-counter {
 
 .imprint-page .cover-animation .type-loop span.loop-right {
   -webkit-animation: typeloop-right infinite 20s linear;
-  animation: typeloop-right infinite 20s linear;
+          animation: typeloop-right infinite 20s linear;
 }
 
 .imprint-page .cover-animation .type-loop span.loop-left {
   -webkit-animation: typeloop-left infinite 20s linear;
-  animation: typeloop-left infinite 20s linear;
+          animation: typeloop-left infinite 20s linear;
 }
 
 .imprint-page .cover-animation span.cover-heading {
@@ -3082,12 +3082,12 @@ main.work-subpage .work-subpage-content .subpage-information .text-counter {
 
 .blog-page .cover-animation .type-loop span.loop-right {
   -webkit-animation: typeloop-right infinite 10s linear;
-  animation: typeloop-right infinite 10s linear;
+          animation: typeloop-right infinite 10s linear;
 }
 
 .blog-page .cover-animation .type-loop span.loop-left {
   -webkit-animation: typeloop-left infinite 10s linear;
-  animation: typeloop-left infinite 10s linear;
+          animation: typeloop-left infinite 10s linear;
 }
 
 .blog-page .cover-animation span.cover-heading {
@@ -3207,7 +3207,7 @@ ul.grid li {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   border: 0;
   border-radius: 4px 4px 0 0;
   transform: scale(1);
@@ -4105,7 +4105,7 @@ button {
   transition: background var(--duration) ease;
   background-color: var(--background-color-alpha);
   -webkit-backdrop-filter: saturate(180%) blur(5px);
-  backdrop-filter: saturate(180%) blur(5px);
+          backdrop-filter: saturate(180%) blur(5px);
 }
 
 @media (max-width: 575px) {
@@ -4117,7 +4117,7 @@ button {
 .overlay.show {
   background-color: var(--background-color-alpha);
   -webkit-backdrop-filter: saturate(180%) blur(5px);
-  backdrop-filter: saturate(180%) blur(5px);
+          backdrop-filter: saturate(180%) blur(5px);
 }
 
 .modal {
