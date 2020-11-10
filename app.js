@@ -11098,13 +11098,18 @@ $(document).on('click touchstart', function (event) {
 
     window.ondevicemotion = function (event) {
       // get mouse pos
-      x = event.accelerationIncludingGravity.x - $('.card').offset().left + $(window).scrollLeft();
-      y = event.accelerationIncludingGravity.y - $('.card').offset().top + $(window).scrollTop();
+      var x = event.accelerationIncludingGravity.x - $('.card').offset().left + $(window).scrollLeft();
+      var y = event.accelerationIncludingGravity.y - $('.card').offset().top + $(window).scrollTop();
       xFixed = (Math.round(x * 10) / 10).toFixed();
       yFixed = (Math.round(y * 10) / 10).toFixed();
-      var rY = map(x, 0, $('.card').width(), -17, 17);
-      var rX = map(y, 0, $('.card').height(), -17, 17);
-      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+      xGyro = 500 + xFixed * 20;
+      yGyro = 100 + yFixed * 4;
+      var rY = map(xGyro, 0, $('.card').width(), -17, 17);
+      var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+
+      if (xGyro % 20 == 0) {
+        $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+      }
     };
 
     is_running = true;

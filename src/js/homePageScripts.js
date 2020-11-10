@@ -63,11 +63,11 @@ $(document).on('click touchstart', function(event) {
     } else {
         window.ondevicemotion = function(event) {
             // get mouse pos
-            x =
+            var x =
                 event.accelerationIncludingGravity.x -
                 $('.card').offset().left +
                 $(window).scrollLeft();
-            y =
+            var y =
                 event.accelerationIncludingGravity.y -
                 $('.card').offset().top +
                 $(window).scrollTop();
@@ -75,15 +75,20 @@ $(document).on('click touchstart', function(event) {
             xFixed = (Math.round(x * 10) / 10).toFixed();
             yFixed = (Math.round(y * 10) / 10).toFixed();
 
-            var rY = map(x, 0, $('.card').width(), -17, 17);
-            var rX = map(y, 0, $('.card').height(), -17, 17);
+            xGyro = 500 + xFixed * 20;
+            yGyro = 100 + yFixed  * 4;
 
-            $('.card')
+            var rY = map(xGyro, 0, $('.card').width(), -17, 17);
+            var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+
+            if (xGyro% 20 == 0) {
+                $('.card')
                 .children('.image')
                 .css(
                     'transform',
                     'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
                 );
+              }
             };
         // return vals
         function map(x, in_min, in_max, out_min, out_max) {
