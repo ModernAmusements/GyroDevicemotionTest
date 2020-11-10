@@ -11092,12 +11092,12 @@ card.on('click touchstart', function (event) {
     console.log('Request permission for iOS 13+ devices');
     is_running = false;
   } else {
-    $(function () {
+    window.ondevicemotion = function () {
       var card = $('.card');
       card.on('touchmove', function (e) {
         // get mouse pos
-        x = e.accelerationIncludingGravity.x;
-        y = e.accelerationIncludingGravity.y; // xFixed = (Math.round(x * 10) / 10).toFixed();
+        x = e.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
+        y = e.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop(); // xFixed = (Math.round(x * 10) / 10).toFixed();
         // yFixed = (Math.round(y * 10) / 10).toFixed();
         // update vals
 
@@ -11112,7 +11112,7 @@ card.on('click touchstart', function (event) {
       }
 
       is_running = true;
-    });
+    };
   }
 }); // let is_running = false;
 // $(document).on('click touchstart', function () {
