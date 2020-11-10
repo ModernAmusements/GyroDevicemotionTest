@@ -75,19 +75,20 @@ $(document).on('click touchstart', function(event) {
             xFixed = (Math.round(x * 10) / 10).toFixed();
             yFixed = (Math.round(y * 10) / 10).toFixed();
 
-            xGyro = 100 + xFixed * 4;
+            xGyro = -100 + xFixed * 4;
             yGyro = 100 + yFixed * 4;
 
             var rY = map(xGyro, 0, $('.card').width(), -17, 17);
             var rX = map(yGyro, 0, $('.card').height(), -17, 17);
 
+            if (xGyro % 20 == 0) {
                 $('.card')
                 .children('.image')
                 .css(
                     'transform',
                     'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
                 );
-
+              }
             };
         // return vals
         function map(x, in_min, in_max, out_min, out_max) {
