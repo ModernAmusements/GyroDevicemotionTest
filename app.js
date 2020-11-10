@@ -11087,6 +11087,7 @@ $(document).on('click touchstart', function (event) {
     console.log('Request permission for iOS 13+ devices');
   } else {
     window.ondevicemotion = function (event) {
+      var card = $(".card");
       card.on("ondevicemotion", function (event) {
         // get mouse pos
         var x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
