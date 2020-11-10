@@ -11081,8 +11081,8 @@ $(function () {
 
 var is_running = false;
 var card = $('.card');
-card.on('click touchstart', function (e) {
-  e.preventDefault(); // Request permission for iOS 13+ devices
+card.on('click touchstart', function (event) {
+  event.preventDefault(); // Request permission for iOS 13+ devices
 
   if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission();
@@ -11098,8 +11098,8 @@ card.on('click touchstart', function (e) {
     };
 
     // get mouse pos
-    var x = e.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
-    var y = e.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
+    var x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
+    var y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
     xFixed = (Math.round(x * 10) / 10).toFixed();
     yFixed = (Math.round(y * 10) / 10).toFixed(); // update vals
 
@@ -11107,21 +11107,7 @@ card.on('click touchstart', function (e) {
     var rX = map(y, 0, $(this).height(), -17, 17); // apply
 
     $(this).children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
-    is_running = true; // $('.mainheading')
-    //   .removeClass('mainheading--desktop')
-    //   .addClass('mainheading--mobile');
-    // xAcc = event.accelerationIncludingGravity.x;
-    // yAcc = event.accelerationIncludingGravity.y;
-    // xAccFixed = (Math.round(xAcc * 10) / 10).toFixed();
-    // yAccFixed = (Math.round(yAcc * 10) / 10).toFixed();
-    // xWidthAcc = 500 + xAccFixed * 20;
-    // yWeightAcc = 100 + yAccFixed * 4;
-    // if (xWidthAcc % 20 == 0) {
-    //   $('.mainheading--mobile').css(
-    //     'font-variation-settings',
-    //     " 'wght' " + yWeightAcc + ", 'wdth' " + xWidthAcc + '',
-    //   );
-    // }
+    is_running = true;
   }
 }); // let is_running = false;
 // $(document).on('click touchstart', function () {

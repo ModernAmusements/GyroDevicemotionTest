@@ -50,8 +50,8 @@ $(function() {
 let is_running = false;
 var card = $('.card');
 
-card.on('click touchstart', function(e) {
-  e.preventDefault();
+card.on('click touchstart', function(event) {
+  event.preventDefault();
   // Request permission for iOS 13+ devices
   if (
     DeviceMotionEvent &&
@@ -66,11 +66,11 @@ card.on('click touchstart', function(e) {
   } else {
     // get mouse pos
     var x =
-      e.accelerationIncludingGravity.x -
+      event.accelerationIncludingGravity.x -
       $(this).offset().left +
       $(window).scrollLeft();
     var y =
-      e.accelerationIncludingGravity.y -
+      event.accelerationIncludingGravity.y -
       $(this).offset().top +
       $(window).scrollTop();
 
@@ -92,26 +92,6 @@ card.on('click touchstart', function(e) {
       return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
     }
     is_running = true;
-
-    // $('.mainheading')
-    //   .removeClass('mainheading--desktop')
-    //   .addClass('mainheading--mobile');
-
-    // xAcc = event.accelerationIncludingGravity.x;
-    // yAcc = event.accelerationIncludingGravity.y;
-
-    // xAccFixed = (Math.round(xAcc * 10) / 10).toFixed();
-    // yAccFixed = (Math.round(yAcc * 10) / 10).toFixed();
-
-    // xWidthAcc = 500 + xAccFixed * 20;
-    // yWeightAcc = 100 + yAccFixed * 4;
-
-    // if (xWidthAcc % 20 == 0) {
-    //   $('.mainheading--mobile').css(
-    //     'font-variation-settings',
-    //     " 'wght' " + yWeightAcc + ", 'wdth' " + xWidthAcc + '',
-    //   );
-    // }
   }
 });
 
