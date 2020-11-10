@@ -11098,8 +11098,8 @@ card.on('click touchstart', function (event) {
     };
 
     // get mouse pos
-    var x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
-    var y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
+    x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
+    y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
     xFixed = (Math.round(x * 10) / 10).toFixed();
     yFixed = (Math.round(y * 10) / 10).toFixed(); // update vals
 

@@ -65,11 +65,11 @@ card.on('click touchstart', function(event) {
     is_running = false;
   } else {
     // get mouse pos
-    var x =
+     x =
       event.accelerationIncludingGravity.x -
       $(this).offset().left +
       $(window).scrollLeft();
-    var y =
+     y =
       event.accelerationIncludingGravity.y -
       $(this).offset().top +
       $(window).scrollTop();
