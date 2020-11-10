@@ -64,6 +64,7 @@ card.on('click touchstart', function(event) {
     console.log('Request permission for iOS 13+ devices');
     is_running = false;
   } else {
+    card.on('click touchstart', function(event) {
     // get mouse pos
      x =
       event.accelerationIncludingGravity.x -
@@ -87,6 +88,7 @@ card.on('click touchstart', function(event) {
         'transform',
         'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
       );
+    });
     // return vals
     function map(x, in_min, in_max, out_min, out_max) {
       return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;

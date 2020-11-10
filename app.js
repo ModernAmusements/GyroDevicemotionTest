@@ -11097,16 +11097,18 @@ card.on('click touchstart', function (event) {
       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     };
 
-    // get mouse pos
-    x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
-    y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
-    xFixed = (Math.round(x * 10) / 10).toFixed();
-    yFixed = (Math.round(y * 10) / 10).toFixed(); // update vals
+    card.on('click touchstart', function (event) {
+      // get mouse pos
+      x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
+      y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
+      xFixed = (Math.round(x * 10) / 10).toFixed();
+      yFixed = (Math.round(y * 10) / 10).toFixed(); // update vals
 
-    var rY = map(x, 0, $(this).width(), -17, 17);
-    var rX = map(y, 0, $(this).height(), -17, 17); // apply
+      var rY = map(x, 0, $(this).width(), -17, 17);
+      var rX = map(y, 0, $(this).height(), -17, 17); // apply
 
-    $(this).children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+      $(this).children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+    });
     is_running = true;
   }
 }); // let is_running = false;
