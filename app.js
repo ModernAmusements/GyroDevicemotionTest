@@ -11079,9 +11079,8 @@ $(function () {
   }
 }); //Mobile
 
-var is_running = flase;
-var card = $('.card');
-card.on('click touchstart', function (event) {
+var is_running = false;
+$(document).on('click touchstart', function (event) {
   event.preventDefault(); // Request permission for iOS 13+ devices
 
   if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -11092,28 +11091,26 @@ card.on('click touchstart', function (event) {
     console.log('Request permission for iOS 13+ devices');
     is_running = false;
   } else {
-    window.ondevicemotion = function () {
-      var card = $('.card');
-      card.on('touchmove', function (e) {
-        // get mouse pos
-        x = e.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
-        y = e.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop(); // xFixed = (Math.round(x * 10) / 10).toFixed();
-        // yFixed = (Math.round(y * 10) / 10).toFixed();
-        // update vals
-
-        var rY = map(x, 0, $(this).width(), -17, 17);
-        var rX = map(y, 0, $(this).height(), -17, 17); // apply
-
-        $(this).children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
-      }); // return vals
-
-      function map(x, in_min, in_max, out_min, out_max) {
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-      }
-
-      is_running = true;
+    // return vals
+    var map = function map(x, in_min, in_max, out_min, out_max) {
+      return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     };
+
+    window.ondevicemotion = function (event) {
+      // get mouse pos
+      x = event.accelerationIncludingGravity.x - $('.card').offset().left + $(window).scrollLeft();
+      y = event.accelerationIncludingGravity.y - $('.card').offset().top + $(window).scrollTop();
+      xFixed = (Math.round(x * 10) / 10).toFixed();
+      yFixed = (Math.round(y * 10) / 10).toFixed();
+      var rY = map(x, 0, $('.card').width(), -17, 17);
+      var rX = map(y, 0, $('.card').height(), -17, 17);
+      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+    };
+
+    is_running = true;
   }
+
+  ;
 }); // let is_running = false;
 // $(document).on('click touchstart', function () {
 // 	if (
