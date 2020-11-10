@@ -45,7 +45,7 @@ $(function() {
 });
 
 //Mobile
-let is_running = true;
+let is_running = flase;
 var card = $('.card');
 
 card.on('click touchstart', function(event) {

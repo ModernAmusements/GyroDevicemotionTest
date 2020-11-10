@@ -11079,7 +11079,7 @@ $(function () {
   }
 }); //Mobile
 
-var is_running = true;
+var is_running = flase;
 var card = $('.card');
 card.on('click touchstart', function (event) {
   event.preventDefault(); // Request permission for iOS 13+ devices
