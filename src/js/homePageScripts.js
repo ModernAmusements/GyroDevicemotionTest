@@ -43,7 +43,7 @@ $(function() {
 });
 
 let is_running = false;
-$(document).on('click touchstart', function(event) {
+$(document).on('click touchstart', function() {
   if (
     DeviceMotionEvent &&
     typeof DeviceMotionEvent.requestPermission === 'function'
@@ -53,9 +53,7 @@ $(document).on('click touchstart', function(event) {
   if (is_running) {
     console.log('Request permission for iOS 13+ devices');
   } else {
-
-      var card = $('.card');
-      card.on('ondevicemotion', function(event) {
+    window.ondevicemotion = function(event) {
         // get mouse pos
         var x =
           event.accelerationIncludingGravity.x -
@@ -85,8 +83,7 @@ $(document).on('click touchstart', function(event) {
             ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
           );
         }
-      });
-
+      };
       // $('.mainheading')
       //   .removeClass('mainheading--desktop')
       //   .addClass('mainheading--mobile');
@@ -106,9 +103,8 @@ $(document).on('click touchstart', function(event) {
       //     " 'wght' " + yWeightAcc + ", 'wdth' " + xWidthAcc + '',
       //   );
       // }
-
-  }
-});
+    };
+  });
 
 // let is_running = false;
 // $(document).on('click touchstart', function () {
