@@ -11107,7 +11107,7 @@ $(document).on('click touchstart', function handleMotion(event) {
 
       var rY = map(xFixed, 0, $('.card').width(), -17, 17);
       var rX = map(yFixed, 0, $('.card').height(), -17, 17);
-      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + rX + 'deg)');
     };
   }
 }); // let is_running = false;
