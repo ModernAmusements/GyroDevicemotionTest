@@ -73,7 +73,7 @@ $(document).on('click touchstart', function(event) {
             yFixed = (Math.round(y * 10) / 10).toFixed();
 
             xGyro = 500 + xFixed * 2;
-            yGyro = 500 + yFixed * 2;
+            yGyro = 500 + yFixed * 40 / 100;
 
             var rY = map(xGyro, 0, $('.card').width(), -17, 17);
             var rX = map(yGyro, 0, $('.card').height(), -17, 17);
