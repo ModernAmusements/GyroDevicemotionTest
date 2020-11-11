@@ -61,42 +61,44 @@ $(document).on('click touchstart', function(event) {
         console.log('Request permission for iOS 13+ devices');
         is_running = false;
     } else {
-        window.ondevicemotion = function(event) {
-            // get mouse pos
-            var x =
-                event.accelerationIncludingGravity.x -
-                $('.card').offset().left +
-                $(window).scrollLeft();
-            var y =
-                event.accelerationIncludingGravity.y -
-                $('.card').offset().top +
-                $(window).scrollTop();
+        $(function() {
+            window.ondevicemotion = function(event) {
+                // get mouse pos
+                var x =
+                    event.accelerationIncludingGravity.x -
+                    $('.card').offset().left +
+                    $(window).scrollLeft();
+                var y =
+                    event.accelerationIncludingGravity.y -
+                    $('.card').offset().top +
+                    $(window).scrollTop();
 
-            xFixed = (Math.round(x * 10) / 10).toFixed();
-            yFixed = (Math.round(y * 10) / 10).toFixed();
+                xFixed = (Math.round(x * 10) / 10).toFixed();
+                yFixed = (Math.round(y * 10) / 10).toFixed();
 
-            xGyro = 45 + xFixed * 2;
-            yGyro = 60 + yFixed * 40 / 100;
+                xGyro = 45 + xFixed * 2;
+                yGyro = 60 + yFixed * 40 / 100;
 
-            var rY = map(xGyro, 0, $('.card').width(), -17, 17);
-            var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+                var rY = map(xGyro, 0, $('.card').width(), -17, 17);
+                var rX = map(yGyro, 0, $('.card').height(), -17, 17);
 
-            if (xGyro % 20 == 0) {
-                $('.card')
-                .children('.image')
-                .css(
-                    'transform',
-                    'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
-                );
-              }
+                if (xGyro % 20 == 0) {
+                    $('.card')
+                        .children('.image')
+                        .css(
+                            'transform',
+                            'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
+                        );
+                }
             };
-        // return vals
-        function map(x, in_min, in_max, out_min, out_max) {
-            return (
-                ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
-            );
-        }
-        is_running = true;
+            // return vals
+            function map(x, in_min, in_max, out_min, out_max) {
+                return (
+                    ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+                );
+            }
+            is_running = true;
+        });
     };
 });
 
