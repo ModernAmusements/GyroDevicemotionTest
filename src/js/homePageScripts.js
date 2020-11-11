@@ -62,11 +62,11 @@ $(document).on('click touchstart', function(event) {
             // get mouse pos
             var x =
                 event.accelerationIncludingGravity.x -
-                $('.card').offset().left +
+                $('this').offset().left +
                 $(window).scrollLeft();
             var y =
                 event.accelerationIncludingGravity.y -
-                $('.card').offset().top +
+                $('this').offset().top +
                 $(window).scrollTop();
 
             // xFixed = (Math.round(x * 10) / 10).toFixed();
@@ -75,8 +75,8 @@ $(document).on('click touchstart', function(event) {
             // xGyro = 45 + xFixed * 2;
             // yGyro = 60 + yFixed * 40 / 100;
 
-            var rY = map(x, 0, $('.card').width(), -17, 17);
-            var rX = map(y, 0, $('.card').height(), -17, 17);
+            var rY = map(x, 0, $('this').width(), -17, 17);
+            var rX = map(y, 0, $('this').height(), -17, 17);
 
 
                 $('.card')
