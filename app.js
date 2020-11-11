@@ -11102,12 +11102,12 @@ $(document).on('click touchstart', function handleMotion(event) {
       var x = event.rotationRate.beta;
       var y = event.rotationRate.alpha;
       xFixed = (Math.round(x * 10) / 10).toFixed();
-      yFixed = (Math.round(y * 10) / 10).toFixed(); // xGyro = 500 + xFixed * 2;
-      // yGyro = 500 + (yFixed * 40) / 100;
-
-      var rY = map(xFixed, 0, $('.card').width(), -17, 17);
-      var rX = map(yFixed, 0, $('.card').height(), -17, 17);
-      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + rX + 'deg)');
+      yFixed = (Math.round(y * 10) / 10).toFixed();
+      xGyro = xFixed * 2;
+      yGyro = yFixed * 4;
+      var rY = map(xGyro, 0, $('.card').width(), -17, 17);
+      var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
     };
   }
 }); // let is_running = false;
