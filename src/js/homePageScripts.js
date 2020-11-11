@@ -65,7 +65,7 @@ $(document).on('click touchstart', function(event) {
                 $('.card').offset().left +
                 $(window).scrollLeft();
             var y =
-            event.rotationRate.gamma -
+            event.rotationRate.alpha -
                 $('.card').offset().top +
                 $(window).scrollTop();
 

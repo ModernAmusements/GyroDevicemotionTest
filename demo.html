@@ -122,9 +122,9 @@
 
             updateFieldIfNotNull('Accelerometer_i', event.interval, 2);
 
-            updateFieldIfNotNull('Gyroscope_z', event.rotationRate.alpha);
             updateFieldIfNotNull('Gyroscope_x', event.rotationRate.beta);
             updateFieldIfNotNull('Gyroscope_y', event.rotationRate.gamma);
+            updateFieldIfNotNull('Gyroscope_z', event.rotationRate.alpha);
             incrementEventCount();
         }
 
