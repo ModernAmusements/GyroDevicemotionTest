@@ -11096,8 +11096,8 @@ $(document).on('click touchstart', function (event) {
 
     window.ondevicemotion = function (event) {
       // get mouse pos
-      var x = event.accelerationIncludingGravity.x - $('.card').offset().left + $(window).scrollLeft();
-      var y = event.accelerationIncludingGravity.y - $('.card').offset().top + $(window).scrollTop();
+      var x = event.acceleration.x - $('.card').offset().left + $(window).scrollLeft();
+      var y = event.acceleration.y - $('.card').offset().top + $(window).scrollTop();
       xFixed = (Math.round(x * 10) / 10).toFixed();
       yFixed = (Math.round(y * 10) / 10).toFixed(); // xGyro = 45 + xFixed * 2;
       // yGyro = 60 + yFixed * 40 / 100;
