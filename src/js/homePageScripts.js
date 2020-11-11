@@ -19,10 +19,6 @@ $(function() {
     }
 });
 
-
-
-
-
 //Desktop
 
 $(function() {
@@ -65,36 +61,35 @@ $(document).on('click touchstart', function(event) {
         console.log('Request permission for iOS 13+ devices');
         is_running = false;
     } else {
-        var card = $('.card');
-        card.ondevicemotion = function(event) {
+        window.ondevicemotion = function(event) {
             // get mouse pos
             var x =
                 event.accelerationIncludingGravity.x -
-                $(this).offset().left +
+                $('.card').offset().left +
                 $(window).scrollLeft();
             var y =
                 event.accelerationIncludingGravity.y -
-                $(this).offset().top +
+                $('.card').offset().top +
                 $(window).scrollTop();
 
             xFixed = (Math.round(x * 10) / 10).toFixed();
             yFixed = (Math.round(y * 10) / 10).toFixed();
 
-            xGyro = -100 + xFixed * 4;
-            yGyro = 100 + yFixed * 4;
+            xGyro = 45 + xFixed * 2;
+            yGyro = 60 + yFixed * 40 / 100;
 
-            var rY = map(xGyro, 0, $(this).width(), -17, 17);
-            var rX = map(yGyro, 0, $(this).height(), -17, 17);
+            var rY = map(xGyro, 0, $('.card').width(), -17, 17);
+            var rX = map(yGyro, 0, $('.card').height(), -17, 17);
 
             if (xGyro % 20 == 0) {
-                $(this)
-                    .children('.image')
-                    .css(
-                        'transform',
-                        'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
-                    );
-            }
-        };
+                $('.card')
+                .children('.image')
+                .css(
+                    'transform',
+                    'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
+                );
+              }
+            };
         // return vals
         function map(x, in_min, in_max, out_min, out_max) {
             return (
