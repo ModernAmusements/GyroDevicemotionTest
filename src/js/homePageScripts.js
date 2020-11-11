@@ -62,23 +62,11 @@ $(document).on('click touchstart', function handleMotion(event) {
   } else {
     window.ondevicemotion = function handleMotion(event) {
       window.addEventListener('devicemotion', handleMotion);
-          var x =
-          event.accelerationIncludingGravity.x -
-            $('.card').offset().left +
-            $(window).scrollLeft();
-          var y =
-          event.accelerationIncludingGravity.y -
-            $('.card').offset().top +
-            $(window).scrollTop();
+          var x = event.accelerationIncludingGravity.x;
+          var y = event.accelerationIncludingGravity.y;
 
-          xFixed = (Math.round(x * 10)).toFixed();
-          yFixed = (Math.round(y * 10)).toFixed();
-
-          xGyro = 500 + xFixed * 2;
-          yGyro = 500 + (yFixed * 40) / 100;
-
-          var rY = map(xGyro, 0, $('.card').width(), -17, 17);
-          var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+          var rY = map(x, 0, $('.card').width(), -17, 17);
+          var rX = map(y, 0, $('.card').height(), -17, 17);
 
           $('.card')
             .children('.image')
