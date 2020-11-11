@@ -1347,11 +1347,16 @@ footer p {
   font-weight: 500;
 }
 
-.homeSvg {
+.homeSvg,
+.homeSvg-mobile {
   stroke-width: 1px;
   grid-column: 1/9;
   grid-row: 1/4;
   z-index: -2;
+}
+
+.homeSvg-mobile {
+ display: none;
 }
 
 .stroke {
@@ -1496,6 +1501,20 @@ button.controller:hover {
 }
 
 @media (min-width: 320px) and (max-width: 1150px) {
+
+  .homeSvg {
+    display: none;
+  }
+
+  .homeSvg-mobile {
+   display: grid;
+  }
+
+
+
+
+
+
   .displayText {
     --h1-size: 6.5vw;
     line-height: 6vw;
