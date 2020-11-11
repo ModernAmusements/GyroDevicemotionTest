@@ -69,22 +69,19 @@ $(document).on('click touchstart', function handleMotion(event) {
           xFixed = (Math.round(x * 100) / 10).toFixed();
           yFixed = (Math.round(y * 100) / 10).toFixed();
 
-           xGyro = xFixed * 10;
-           yGyro = yFixed * 10;
+          xGyro = xFixed * 5;
+          yGyro = yFixed * 5;
 
-          var rY = map(xGyro, 0, $('.card').width(), -17, 17);
-          var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+          var rX = xGyro;
+          var rY = yGyro;
 
           $('.card')
             .children('.image')
             .css(
               'transform',
-              'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
+              'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)',
             );
     };
-    function map(x, in_min, in_max, out_min, out_max) {
-      return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
-    }
   }
 });
 

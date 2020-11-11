@@ -11091,10 +11091,6 @@ $(document).on('click touchstart', function handleMotion(event) {
     window.removeEventListener('devicemotion', handleMotion);
     console.log('Request permission for iOS 13+ devices');
   } else {
-    var map = function map(x, in_min, in_max, out_min, out_max) {
-      return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-    };
-
     window.ondevicemotion = function handleMotion(event) {
       window.addEventListener('devicemotion', handleMotion); // get mouse pos
 
@@ -11102,11 +11098,11 @@ $(document).on('click touchstart', function handleMotion(event) {
       var y = event.accelerationIncludingGravity.y;
       xFixed = (Math.round(x * 100) / 10).toFixed();
       yFixed = (Math.round(y * 100) / 10).toFixed();
-      xGyro = xFixed * 10;
-      yGyro = yFixed * 10;
-      var rY = map(xGyro, 0, $('.card').width(), -17, 17);
-      var rX = map(yGyro, 0, $('.card').height(), -17, 17);
-      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+      xGyro = xFixed * 5;
+      yGyro = yFixed * 5;
+      var rX = xGyro;
+      var rY = yGyro;
+      $('.card').children('.image').css('transform', 'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)');
     };
   }
 }); // let is_running = false;
