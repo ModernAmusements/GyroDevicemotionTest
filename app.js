@@ -11088,7 +11088,7 @@ $(document).on('click touchstart', function handleMotion(event) {
   }
 
   if (is_running) {
-    window.removeEventListener("devicemotion", handleMotion);
+    window.removeEventListener('devicemotion', handleMotion);
     console.log('Request permission for iOS 13+ devices');
   } else {
     // return vals
@@ -11097,7 +11097,7 @@ $(document).on('click touchstart', function handleMotion(event) {
     };
 
     window.ondevicemotion = function handleMotion(event) {
-      window.addEventListener("devicemotion", handleMotion); // get mouse pos
+      window.addEventListener('devicemotion', handleMotion); // get mouse pos
 
       var x = event.rotationRate.beta - $('.card').offset().left + $(window).scrollLeft();
       var y = event.rotationRate.alpha - $('.card').offset().top + $(window).scrollTop();
@@ -11110,8 +11110,6 @@ $(document).on('click touchstart', function handleMotion(event) {
       $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
     };
   }
-
-  ;
 }); // let is_running = false;
 // $(document).on('click touchstart', function () {
 // 	if (
