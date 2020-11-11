@@ -62,27 +62,29 @@ $(document).on('click touchstart', function handleMotion(event) {
   } else {
     window.ondevicemotion = function handleMotion(event) {
       window.addEventListener('devicemotion', handleMotion);
+          var x =
+          event.accelerationIncludingGravity.x -
+            $('.card').offset().left +
+            $(window).scrollLeft();
+          var y =
+          event.accelerationIncludingGravity.y -
+            $('.card').offset().top +
+            $(window).scrollTop();
 
-        var x =
-        event.accelerationIncludingGravity.x;
-        var y =
-        event.accelerationIncludingGravity.y;
+          xFixed = (Math.round(x * 10)).toFixed();
+          yFixed = (Math.round(y * 10)).toFixed();
 
-        xFixed = (Math.round(x * 10) / 10).toFixed();
-        yFixed = (Math.round(y * 10) / 10).toFixed();
+          xGyro = 500 + xFixed * 2;
+          yGyro = 500 + (yFixed * 40) / 100;
 
-        xGyro = 500 + xFixed * 20;
-        yGyro = 100 + yFixed * 4;
+          var rY = map(xGyro, 0, $('.card').width(), -17, 17);
+          var rX = map(yGyro, 0, $('.card').height(), -17, 17);
 
-        var rY = map(xGyro, 0, $('.card').width(), -17, 17);
-        var rX = map(yGyro, 0, $('.card').height(), -17, 17);
-
-
-            $('.card')
+          $('.card')
             .children('.image')
             .css(
-                'transform',
-                'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
+              'transform',
+              'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
             );
     };
     // return vals
