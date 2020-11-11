@@ -11096,22 +11096,22 @@ $(document).on('click touchstart', function (event) {
       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     };
 
-    window.ondevicemotion = function (event) {
+    var card = $('.card');
+    card.on('touchemove', function (event) {
       // get mouse pos
-      var x = event.accelerationIncludingGravity.x - $('.card').offset().left + $(window).scrollLeft();
-      var y = event.accelerationIncludingGravity.y - $('.card').offset().top + $(window).scrollTop();
+      var x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
+      var y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
       xFixed = (Math.round(x * 10) / 10).toFixed();
       yFixed = (Math.round(y * 10) / 10).toFixed();
       xGyro = -100 + xFixed * 4;
       yGyro = 100 + yFixed * 4;
-      var rY = map(xGyro, 0, $('.card').width(), -17, 17);
-      var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+      var rY = map(xGyro, 0, $(this).width(), -17, 17);
+      var rX = map(yGyro, 0, $(this).height(), -17, 17);
 
       if (xGyro % 20 == 0) {
-        $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+        $(this).children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
       }
-    };
-
+    });
     is_running = true;
   }
 
