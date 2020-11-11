@@ -11100,8 +11100,8 @@ $(document).on('click touchstart', function handleMotion(event) {
       window.addEventListener('devicemotion', handleMotion);
       var x = event.accelerationIncludingGravity.x;
       var y = event.accelerationIncludingGravity.y;
-      var rY = map(x, 0, $('.card').width(), -17, 17);
-      var rX = map(y, 0, $('.card').height(), -17, 17);
+      var rY = map(x, 0, $('.card').width(), -45, 45);
+      var rX = map(y, 0, $('.card').height(), -45, 45);
       $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
     };
   }
