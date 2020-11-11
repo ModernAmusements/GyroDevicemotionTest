@@ -11097,9 +11097,14 @@ $(document).on('click touchstart', function handleMotion(event) {
     };
 
     window.ondevicemotion = function handleMotion(event) {
-      window.addEventListener('devicemotion', handleMotion);
-      var x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
-      var y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
+      window.addEventListener('devicemotion', handleMotion); // get mouse pos
+
+      var x = event.rotationRate.beta - $('.card').offset().left + $(window).scrollLeft();
+      var y = event.rotationRate.alpha - $('.card').offset().top + $(window).scrollTop(); // xFixed = (Math.round(x * 10) / 10).toFixed();
+      // yFixed = (Math.round(y * 10) / 10).toFixed();
+      // xGyro = 500 + xFixed * 2;
+      // yGyro = 500 + (yFixed * 40) / 100;
+
       var rY = map(x, 0, $('.card').width(), -17, 17);
       var rX = map(y, 0, $('.card').height(), -17, 17);
       $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
