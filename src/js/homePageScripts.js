@@ -61,11 +61,11 @@ $(document).on('click touchstart', function(event) {
         window.ondevicemotion = function(event) {
             // get mouse pos
             var x =
-            event.beta -
+            event.beta.x -
                 $('.card').offset().left +
                 $(window).scrollLeft();
             var y =
-            event.gamma -
+            event.gamma.y -
                 $('.card').offset().top +
                 $(window).scrollTop();
 
