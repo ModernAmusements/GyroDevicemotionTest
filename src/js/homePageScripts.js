@@ -56,16 +56,18 @@ $(document).on('click touchstart', function(event) {
     }
 
     if (is_running) {
+      window.removeEventListener("devicemotion", handleMotion);
         console.log('Request permission for iOS 13+ devices');
     } else {
         window.ondevicemotion = function(event) {
+          window.addEventListener("devicemotion", handleMotion);
             // get mouse pos
             var x =
-            event.beta -
+            event.rotationRate.beta -
                 $('.card').offset().left +
                 $(window).scrollLeft();
             var y =
-            event.gamma -
+            event.rotationRate.alpha -
                 $('.card').offset().top +
                 $(window).scrollTop();
 

@@ -11087,6 +11087,7 @@ $(document).on('click touchstart', function (event) {
   }
 
   if (is_running) {
+    window.removeEventListener("devicemotion", handleMotion);
     console.log('Request permission for iOS 13+ devices');
   } else {
     // return vals
@@ -11095,9 +11096,10 @@ $(document).on('click touchstart', function (event) {
     };
 
     window.ondevicemotion = function (event) {
-      // get mouse pos
-      var x = event.beta - $('.card').offset().left + $(window).scrollLeft();
-      var y = event.gamma - $('.card').offset().top + $(window).scrollTop();
+      window.addEventListener("devicemotion", handleMotion); // get mouse pos
+
+      var x = event.rotationRate.beta - $('.card').offset().left + $(window).scrollLeft();
+      var y = event.rotationRate.alpha - $('.card').offset().top + $(window).scrollTop();
       xFixed = (Math.round(x * 10) / 10).toFixed();
       yFixed = (Math.round(y * 10) / 10).toFixed();
       xGyro = 500 + xFixed * 2;
