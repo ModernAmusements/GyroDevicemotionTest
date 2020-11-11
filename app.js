@@ -11102,7 +11102,10 @@ $(document).on('click touchstart', function handleMotion(event) {
       yGyro = yFixed * 5;
       var rX = xGyro;
       var rY = yGyro;
-      $('.card').children('.image').css('transform', 'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)');
+
+      if (xGyro % 20 == 0) {
+        $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + rX + 'deg)');
+      }
     };
   }
 }); // let is_running = false;

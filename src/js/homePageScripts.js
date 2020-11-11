@@ -75,12 +75,14 @@ $(document).on('click touchstart', function handleMotion(event) {
           var rX = xGyro;
           var rY = yGyro;
 
+          if (xGyro % 20 == 0) {
           $('.card')
             .children('.image')
             .css(
               'transform',
-              'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)',
+              'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + rX + 'deg)',
             );
+          }
     };
   }
 });
