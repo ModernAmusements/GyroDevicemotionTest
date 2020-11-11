@@ -11100,8 +11100,8 @@ $(document).on('click touchstart', function handleMotion(event) {
 
       var x = event.accelerationIncludingGravity.x;
       var y = event.accelerationIncludingGravity.y;
-      xFixed = (Math.round(x * 10) / 10).toFixed();
-      yFixed = (Math.round(y * 10) / 10).toFixed();
+      xFixed = (Math.round(x * 100) / 10).toFixed();
+      yFixed = (Math.round(y * 100) / 10).toFixed();
       xGyro = xFixed * 10;
       yGyro = yFixed * 10;
       var rY = map(xGyro, 0, $('.card').width(), -17, 17);
