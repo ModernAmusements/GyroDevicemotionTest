@@ -63,7 +63,7 @@ $(document).on('click touchstart', function(event) {
             var x =
             event.rotationRate.beta;
             var y =
-            event.rotationRate.gamma;
+            event.rotationRate.alpha;
 
             xFixed = (Math.round(x * 10) / 10).toFixed();
             yFixed = (Math.round(y * 10) / 10).toFixed();
