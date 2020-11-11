@@ -46,7 +46,8 @@ $(function() {
 
 //Mobile
 let is_running = false;
-$(document).on('click touchstart', function(event) {
+$(document).on('click touchstart', function handleMotion (event) {
+  event.preventDefault();
     // Request permission for iOS 13+ devices
     if (
         DeviceMotionEvent &&
@@ -59,7 +60,7 @@ $(document).on('click touchstart', function(event) {
       window.removeEventListener("devicemotion", handleMotion);
         console.log('Request permission for iOS 13+ devices');
     } else {
-        window.ondevicemotion = function(event) {
+        window.ondevicemotion = function handleMotion (event) {
           window.addEventListener("devicemotion", handleMotion);
             // get mouse pos
             var x =
