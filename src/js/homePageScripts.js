@@ -46,10 +46,7 @@ $(function() {
 
 //Mobile
 let is_running = false;
-
 $(document).on('click touchstart', function(event) {
-
-    event.preventDefault();
     // Request permission for iOS 13+ devices
     if (
         DeviceMotionEvent &&
@@ -60,7 +57,6 @@ $(document).on('click touchstart', function(event) {
 
     if (is_running) {
         console.log('Request permission for iOS 13+ devices');
-        is_running = false;
     } else {
         window.ondevicemotion = function(event) {
             // get mouse pos
@@ -97,7 +93,6 @@ $(document).on('click touchstart', function(event) {
                 ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
             );
         }
-        is_running = true;
     };
 });
 

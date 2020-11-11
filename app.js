@@ -11081,15 +11081,13 @@ $(function () {
 
 var is_running = false;
 $(document).on('click touchstart', function (event) {
-  event.preventDefault(); // Request permission for iOS 13+ devices
-
+  // Request permission for iOS 13+ devices
   if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission();
   }
 
   if (is_running) {
     console.log('Request permission for iOS 13+ devices');
-    is_running = false;
   } else {
     // return vals
     var map = function map(x, in_min, in_max, out_min, out_max) {
@@ -11111,8 +11109,6 @@ $(document).on('click touchstart', function (event) {
         $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
       }
     };
-
-    is_running = true;
   }
 
   ;
