@@ -11091,26 +11091,24 @@ $(document).on('click touchstart', function (event) {
     console.log('Request permission for iOS 13+ devices');
     is_running = false;
   } else {
-    window.ondevicemotion = function () {
-      var card = $('.card');
-      card.on('toucheemove', function (event) {
-        // get mouse pos
-        var x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
-        var y = event.accelerationIncludingGravity.y - $('this').offset().top + $(window).scrollTop();
-        xFixed = (Math.round(x * 10) / 10).toFixed();
-        yFixed = (Math.round(y * 10) / 10).toFixed();
-        xGyro = 45 + xFixed * 2;
-        yGyro = 60 + yFixed * 40 / 100;
-        var rY = map(xGyro, 0, $('this').width(), -17, 17);
-        var rX = map(yGyro, 0, $('this').height(), -17, 17);
+    // return vals
+    var map = function map(x, in_min, in_max, out_min, out_max) {
+      return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    };
 
-        if (xGyro % 20 == 0) {
-          $('this').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
-        }
-      }); // return vals
+    window.ondevicemotion = function (event) {
+      // get mouse pos
+      var x = event.accelerationIncludingGravity.x - $('.card').offset().left + $(window).scrollLeft();
+      var y = event.accelerationIncludingGravity.y - $('.card').offset().top + $(window).scrollTop();
+      xFixed = (Math.round(x * 10) / 10).toFixed();
+      yFixed = (Math.round(y * 10) / 10).toFixed();
+      xGyro = 45 + xFixed * 2;
+      yGyro = 60 + yFixed * 40 / 100;
+      var rY = map(xGyro, 0, $('.card').width(), -17, 17);
+      var rX = map(yGyro, 0, $('.card').height(), -17, 17);
 
-      function map(x, in_min, in_max, out_min, out_max) {
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+      if (xGyro % 20 == 0) {
+        $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
       }
     };
 
