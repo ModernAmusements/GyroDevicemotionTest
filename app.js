@@ -11091,22 +11091,17 @@ $(document).on('click touchstart', function handleMotion(event) {
     window.removeEventListener('devicemotion', handleMotion);
     console.log('Request permission for iOS 13+ devices');
   } else {
-    // return vals
-    var map = function map(x, in_min, in_max, out_min, out_max) {
-      return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-    };
-
     window.ondevicemotion = function handleMotion(event) {
       window.addEventListener('devicemotion', handleMotion); // get mouse pos
 
-      var x = event.rotationRate.beta;
-      var y = event.rotationRate.alpha;
+      var x = event.accelerationIncludingGravity.x;
+      var y = event.accelerationIncludingGravity.y;
       xFixed = (Math.round(x * 10) / 10).toFixed();
       yFixed = (Math.round(y * 10) / 10).toFixed();
-      xGyro = (2 + xFixed) * 10;
+      xGyro = xFixed * 10;
       yGyro = yFixed * 10;
-      var rY = map(xGyro, 0, $('.card').width(), -17, 17);
-      var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+      var rX = xGyro;
+      var rY = yGyro;
       $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
     };
   }
