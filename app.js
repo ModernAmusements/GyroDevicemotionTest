@@ -11098,11 +11098,11 @@ $(document).on('click touchstart', function handleMotion(event) {
       var y = event.accelerationIncludingGravity.y;
       xFixed = (Math.round(x * 10) / 10).toFixed();
       yFixed = (Math.round(y * 10) / 10).toFixed();
-      xGyro = xFixed * 10;
-      yGyro = yFixed * 10;
+      xGyro = xFixed * 5;
+      yGyro = yFixed * 5;
       var rX = xGyro;
       var rY = yGyro;
-      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
+      $('.card').children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + rX + 'deg)');
     };
   }
 }); // let is_running = false;

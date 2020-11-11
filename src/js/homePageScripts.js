@@ -69,8 +69,8 @@ $(document).on('click touchstart', function handleMotion(event) {
           xFixed = (Math.round(x * 10) / 10).toFixed();
           yFixed = (Math.round(y * 10) / 10).toFixed();
 
-           xGyro = xFixed * 10;
-           yGyro = yFixed * 10;
+          xGyro = xFixed * 5;
+          yGyro = yFixed * 5;
 
           var rX = xGyro;
           var rY = yGyro;
@@ -79,7 +79,7 @@ $(document).on('click touchstart', function handleMotion(event) {
             .children('.image')
             .css(
               'transform',
-              'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
+              'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + rX + 'deg)',
             );
     };
   }
