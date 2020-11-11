@@ -58,35 +58,35 @@ $(document).on('click touchstart', function(event) {
     if (is_running) {
         console.log('Request permission for iOS 13+ devices');
     } else {
-        window.ondevicemotion = function(event) {
-            // get mouse pos
-            var x =
-            event.beta.x -
-                $('.card').offset().left +
-                $(window).scrollLeft();
-            var y =
-            event.gamma.y -
-                $('.card').offset().top +
-                $(window).scrollTop();
+      window.ondevicemotion = function(event) {
+        // get mouse pos
+        var x =
+        event.beta -
+            $('.card').offset().left +
+            $(window).scrollLeft();
+        var y =
+        event.gamma -
+            $('.card').offset().top +
+            $(window).scrollTop();
 
-            xFixed = (Math.round(x * 10) / 10).toFixed();
-            yFixed = (Math.round(y * 10) / 10).toFixed();
+        xFixed = (Math.round(x * 10) / 10).toFixed();
+        yFixed = (Math.round(y * 10) / 10).toFixed();
 
-            xGyro = 500 + xFixed * 2;
-            yGyro = 500 + yFixed * 40 / 100;
+        xGyro = 500 + xFixed * 2;
+        yGyro = 500 + yFixed * 40 / 100;
 
-            var rY = map(xGyro, 0, $('.card').width(), -17, 17);
-            var rX = map(yGyro, 0, $('.card').height(), -17, 17);
+        var rY = map(xGyro, 0, $('.card').width(), -17, 17);
+        var rX = map(yGyro, 0, $('.card').height(), -17, 17);
 
 
-                $('.card')
-                .children('.image')
-                .css(
-                    'transform',
-                    'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
-                );
+            $('.card')
+            .children('.image')
+            .css(
+                'transform',
+                'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
+            );
 
-            };
+        };
         // return vals
         function map(x, in_min, in_max, out_min, out_max) {
             return (
