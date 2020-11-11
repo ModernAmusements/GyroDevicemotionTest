@@ -62,11 +62,11 @@ $(document).on('click touchstart', function handleMotion(event) {
   } else {
     window.ondevicemotion = function handleMotion(event) {
       window.addEventListener('devicemotion', handleMotion);
-          var x = event.accelerationIncludingGravity.x;
-          var y = event.accelerationIncludingGravity.y;
+          var x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
+          var y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
 
-          var rY = map(x, 0, $('.card').width(), -45, 45);
-          var rX = map(y, 0, $('.card').height(), -45, 45);
+          var rY = map(x, 0, $('.card').width(), -17, 17);
+          var rX = map(y, 0, $('.card').height(), -17, 17);
 
           $('.card')
             .children('.image')
