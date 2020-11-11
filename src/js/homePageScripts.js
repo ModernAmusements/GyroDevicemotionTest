@@ -66,7 +66,7 @@ $(document).on('click touchstart', function(event) {
         is_running = false;
     } else {
         var card = $('.card');
-        card.on('touchemove', function(event) {
+        card.ondevicemotion = function(event) {
             // get mouse pos
             var x =
                 event.accelerationIncludingGravity.x -
@@ -94,7 +94,7 @@ $(document).on('click touchstart', function(event) {
                         'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)',
                     );
             }
-        });
+        };
         // return vals
         function map(x, in_min, in_max, out_min, out_max) {
             return (

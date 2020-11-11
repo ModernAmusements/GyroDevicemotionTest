@@ -11097,7 +11097,8 @@ $(document).on('click touchstart', function (event) {
     };
 
     var card = $('.card');
-    card.on('touchemove', function (event) {
+
+    card.ondevicemotion = function (event) {
       // get mouse pos
       var x = event.accelerationIncludingGravity.x - $(this).offset().left + $(window).scrollLeft();
       var y = event.accelerationIncludingGravity.y - $(this).offset().top + $(window).scrollTop();
@@ -11111,7 +11112,8 @@ $(document).on('click touchstart', function (event) {
       if (xGyro % 20 == 0) {
         $(this).children('.image').css('transform', 'rotateY(' + rY + 'deg)' + ' ' + 'rotateX(' + -rX + 'deg)');
       }
-    });
+    };
+
     is_running = true;
   }
 
