@@ -63,8 +63,8 @@ $(document).on('click touchstart', function handleMotion(event) {
     window.ondevicemotion = function handleMotion(event) {
       window.addEventListener('devicemotion', handleMotion);
       // get mouse pos
-          var x =  Math.clip(parseInt((event.rotationRate.beta*10).toFixed(0)));
-          var y = Math.clip(parseInt((event.rotationRate.alpha*10).toFixed(0)));
+          var x = parseInt((event.rotationRate.beta*10).toFixed(0));
+          var y = parseInt((event.rotationRate.alpha*10).toFixed(0));
 
           xFixed = (Math.round(x * 20) / 10).toFixed();
           yFixed = (Math.round(y * 20) / 10).toFixed();
