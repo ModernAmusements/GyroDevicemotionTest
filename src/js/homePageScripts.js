@@ -79,7 +79,7 @@ $(document).on('click touchstart', function handleMotion(event) {
             .children('.image')
             .css(
               'transform',
-              'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)',
+              'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + -rY + 'deg)',
             );
     };
   }
