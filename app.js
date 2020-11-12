@@ -11078,6 +11078,48 @@ $(function () {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
 }); //Mobile
+
+var is_running = false;
+$(document).on('click touchstart', function handleMotion(event) {
+  event.preventDefault(); // Request permission for iOS 13+ devices
+
+  if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
+    DeviceMotionEvent.requestPermission();
+  }
+
+  if (is_running) {
+    window.removeEventListener('devicemotion', handleMotion);
+    console.log('Request permission for iOS 13+ devices');
+  } else {
+    window.ondevicemotion = function handleMotion(event) {
+      window.addEventListener('devicemotion', handleMotion); // get mouse pos
+
+      var x = event.accelerationIncludingGravity.x;
+      var y = event.accelerationIncludingGravity.y;
+      xFixed = (Math.round(x * 100) / 10).toFixed();
+      yFixed = (Math.round(y * 100) / 10).toFixed();
+      xGyro = xFixed * 5;
+      yGyro = yFixed * 5;
+      var rX = xGyro;
+      var rY = yGyro;
+      $('.card').children('.image').css('transform', 'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)');
+    };
+  }
+}); // let is_running = false;
+// $(document).on('click touchstart', function () {
+// 	if (
+// 		DeviceMotionEvent &&
+// 		typeof DeviceMotionEvent.requestPermission === "function"
+// 	) {
+// 		DeviceMotionEvent.requestPermission();
+// 	}
+// 	if (is_running) {
+// 		console.log('running1')
+// 	} else {
+// 		console.log('running2')
+// 		is_running = true;
+// 	}
+// });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
