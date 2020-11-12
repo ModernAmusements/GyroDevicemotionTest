@@ -60,7 +60,7 @@ $(document).on('click touchstart', function handleMotion(event) {
         window.removeEventListener('devicemotion', handleMotion);
         console.log('Request permission for iOS 13+ devices');
     } else {
-        requestAnimationFrame(() =>
+
             window.ondevicemotion = function handleMotion(event) {
 
                 window.addEventListener('devicemotion', handleMotion);
@@ -69,8 +69,8 @@ $(document).on('click touchstart', function handleMotion(event) {
                 var x = event.accelerationIncludingGravity.x;
                 var y = event.accelerationIncludingGravity.y
 
-                xFixed = (Math.round(x * 20) / 10).toFixed();
-                yFixed = (Math.round(y * 20) / 10).toFixed();
+                xFixed = (x * 20) / 10 ;
+                yFixed = (y * 20) / 10 ;
 
                 xGyro = xFixed * 5;
                 yGyro = yFixed * 5;
@@ -84,7 +84,7 @@ $(document).on('click touchstart', function handleMotion(event) {
                         'transform',
                         'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)',
                     );
-            }
-        );
+            };
+
     }
 });

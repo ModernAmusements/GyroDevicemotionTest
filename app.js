@@ -11091,21 +11091,19 @@ $(document).on('click touchstart', function handleMotion(event) {
     window.removeEventListener('devicemotion', handleMotion);
     console.log('Request permission for iOS 13+ devices');
   } else {
-    requestAnimationFrame(function () {
-      return window.ondevicemotion = function handleMotion(event) {
-        window.addEventListener('devicemotion', handleMotion); // get mouse pos
+    window.ondevicemotion = function handleMotion(event) {
+      window.addEventListener('devicemotion', handleMotion); // get mouse pos
 
-        var x = event.accelerationIncludingGravity.x;
-        var y = event.accelerationIncludingGravity.y;
-        xFixed = (Math.round(x * 20) / 10).toFixed();
-        yFixed = (Math.round(y * 20) / 10).toFixed();
-        xGyro = xFixed * 5;
-        yGyro = yFixed * 5;
-        var rX = xGyro;
-        var rY = yGyro - 90;
-        $('.card').children('.image').css('transform', 'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)');
-      };
-    });
+      var x = event.accelerationIncludingGravity.x;
+      var y = event.accelerationIncludingGravity.y;
+      xFixed = x * 20 / 10;
+      yFixed = y * 20 / 10;
+      xGyro = xFixed * 5;
+      yGyro = yFixed * 5;
+      var rX = xGyro;
+      var rY = yGyro - 90;
+      $('.card').children('.image').css('transform', 'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)');
+    };
   }
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
