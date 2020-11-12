@@ -73,7 +73,7 @@ $(document).on('click touchstart', function handleMotion(event) {
           yGyro = yFixed * 5;
 
           var rX = xGyro;
-          var rY = yGyro;
+          var rY = yGyro - 90;
 
           $('.card')
             .children('.image')

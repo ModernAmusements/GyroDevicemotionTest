@@ -11101,7 +11101,7 @@ $(document).on('click touchstart', function handleMotion(event) {
       xGyro = xFixed * 5;
       yGyro = yFixed * 5;
       var rX = xGyro;
-      var rY = yGyro;
+      var rY = yGyro - 90;
       $('.card').children('.image').css('transform', 'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)');
     };
   }
