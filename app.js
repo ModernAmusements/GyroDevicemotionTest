@@ -11096,8 +11096,8 @@ $(document).on('click touchstart', function handleMotion(event) {
 
       var x = event.accelerationIncludingGravity.x;
       var y = event.accelerationIncludingGravity.y;
-      xFixed = (Math.round(x * 100) / 10).toFixed();
-      yFixed = (Math.round(y * 100) / 10).toFixed();
+      xFixed = (Math.round(x * 20) / 10).toFixed();
+      yFixed = (Math.round(y * 20) / 10).toFixed();
       xGyro = xFixed * 5;
       yGyro = yFixed * 5;
       var rX = xGyro;

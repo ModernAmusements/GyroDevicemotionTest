@@ -1332,7 +1332,7 @@ footer p {
 .pageContent .image {
   z-index: 999999;
   transform-style: preserve-3d;
-  transform: rotateX(30deg) rotateY(30deg);
+  transform: rotateX(0deg) rotateY(0deg);
 }
 
 .pageContent .screen {
