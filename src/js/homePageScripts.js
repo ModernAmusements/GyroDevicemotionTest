@@ -61,10 +61,11 @@ $(document).on('click touchstart', function handleMotion(event) {
     console.log('Request permission for iOS 13+ devices');
   } else {
     window.ondevicemotion = function handleMotion(event) {
+
       window.addEventListener('devicemotion', handleMotion);
       // get mouse pos
-          var x = parseInt((event.rotationRate.beta*10).toFixed(0));
-          var y = parseInt((event.rotationRate.alpha*10).toFixed(0));
+          var x = event.accelerationIncludingGravity.x;
+          var y = event.accelerationIncludingGravity.y
 
           xFixed = (Math.round(x * 20) / 10).toFixed();
           yFixed = (Math.round(y * 20) / 10).toFixed();
@@ -72,8 +73,15 @@ $(document).on('click touchstart', function handleMotion(event) {
           xGyro = xFixed * 5;
           yGyro = yFixed * 5;
 
-          var rX = xGyro;
-          var rY = yGyro - 90;
+          rotateXLerp = lerp(rotateXLerp, xGyro, 0.15); // 0.1 = default
+          rotateYLerp = lerp(rotateYLerp, yGyro, 0.15); // 0.1 = default
+
+          function lerp(start, end, amt) {
+            return (1-amt)*start+amt*end;
+          }
+
+          var rX = rotateXLerp;
+          var rY = rotateYLerp - 90;
 
           $('.card')
             .children('.image')
