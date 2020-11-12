@@ -11098,8 +11098,8 @@ $(document).on('click touchstart', function handleMotion(event) {
       var y = event.accelerationIncludingGravity.y;
       xFixed = (Math.round(x * 20) / 10).toFixed();
       yFixed = (Math.round(y * 20) / 10).toFixed();
-      xGyro = xFixed * 5;
-      yGyro = yFixed * 5;
+      xGyro = xFixed * 2;
+      yGyro = yFixed * 2;
       var rX = xGyro;
       var rY = yGyro - 90;
       $('.card').children('.image').css('transform', 'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)');
