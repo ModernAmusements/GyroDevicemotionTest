@@ -11094,10 +11094,10 @@ $(document).on('click touchstart', function handleMotion(event) {
     window.ondevicemotion = function handleMotion(event) {
       window.addEventListener('devicemotion', handleMotion); // get mouse pos
 
-      var x = event.accelerationIncludingGravity.x;
-      var y = event.accelerationIncludingGravity.y;
-      xFixed = x * 20 / 10;
-      yFixed = y * 20 / 10;
+      var x = Math.clip(parseInt((event.rotationRate.beta * 10).toFixed(0)));
+      var y = Math.clip(parseInt((event.rotationRate.alpha * 10).toFixed(0)));
+      xFixed = (Math.round(x * 20) / 10).toFixed();
+      yFixed = (Math.round(y * 20) / 10).toFixed();
       xGyro = xFixed * 5;
       yGyro = yFixed * 5;
       var rX = xGyro;
