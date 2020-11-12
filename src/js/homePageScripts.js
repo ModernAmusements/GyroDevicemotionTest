@@ -72,8 +72,8 @@ $(document).on('click touchstart', function handleMotion(event) {
           xGyro = xFixed * 5;
           yGyro = yFixed * 5;
 
-          var rX = map(xGyro, 0, $(this).width(), -17, 17);
-          var rY = map(yGyro, 0, $(this).height(), -17, 17);
+          var rX = map(xGyro, -90, 90);
+          var rY = map(yGyro, -90, 90);
 
           $('.card')
             .children('.image')
@@ -82,8 +82,8 @@ $(document).on('click touchstart', function handleMotion(event) {
               'rotateY(' + rX + 'deg)' + ' ' + 'rotateX(' + rY + 'deg)',
             );
     };
-    function map(x, in_min, in_max, out_min, out_max) {
-      return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+    function map(x, out_min, out_max) {
+      return (x * (out_max - out_min)) + out_min;
     }
   }
 });
